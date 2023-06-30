@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Editor-specific
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.idea/
+
+# Environment variables
+.env
+
+# Compiled output
+dist/
+build/
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
