@@ -26,7 +26,7 @@ ARG PORT=80
 ENV PORT $PORT
 
 # Expose the port that the web server will listen on
-EXPOSE 8080
+EXPOSE $PORT
 
 # Run the application
 CMD ["pm2-runtime", "pm2.config.js"]
