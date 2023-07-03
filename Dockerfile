@@ -3,7 +3,9 @@ FROM node:14
 
 # Set the working directory inside the container
 WORKDIR /var/www/express-oauth-mongodb-app
+
 # Set ownership and permissions for the data directory
+USER node
 RUN chown -R node:node /var/www/express-oauth-mongodb-app/data
 RUN chmod u+rw -R /var/www/express-oauth-mongodb-app/data
 
