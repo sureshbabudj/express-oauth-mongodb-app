@@ -4,8 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - PORT=80
     ports:
-      - '80:8080'
+      - '${PORT}:8080'
     depends_on:
       - mongo
   mongo:

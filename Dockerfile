@@ -8,7 +8,7 @@ WORKDIR /var/www/express-oauth-mongodb-app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code
 COPY . .
@@ -16,8 +16,12 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# Set the environment variable for the port (default: 80)
+ARG PORT=80
+ENV PORT $PORT
+
 # Expose the port that the web server will listen on
 EXPOSE 8080
 
 # Run the application
-CMD [ "npm", "start" ]
+CMD ["pm2-runtime", "pm2.config.js"]
