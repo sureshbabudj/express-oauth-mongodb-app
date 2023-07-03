@@ -19,3 +19,7 @@ build/
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+
+# db
+/data

@@ -12,7 +12,7 @@ import { googleStrategy } from './passport'
 import { User } from './models/user';
 
 const app: Application = express();
-const port: number = 8088;
+const port: number = 8080;
 
 passport.use(googleStrategy);
 
