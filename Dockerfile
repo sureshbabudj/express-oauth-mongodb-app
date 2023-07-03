@@ -3,6 +3,9 @@ FROM node:14
 
 # Set the working directory inside the container
 WORKDIR /var/www/express-oauth-mongodb-app
+# Set ownership and permissions for the data directory
+RUN chown -R node:node /var/www/express-oauth-mongodb-app/data
+RUN chmod u+rw -R /var/www/express-oauth-mongodb-app/data
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
