@@ -1,5 +1,5 @@
 # Use a Node.js base image
-FROM node:14
+FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /var/www/express-oauth-mongodb-app
@@ -23,5 +23,8 @@ ENV PORT $PORT
 # Expose the port that the web server will listen on
 EXPOSE $PORT
 
-# Run the application
-CMD ["pm2-runtime", "pm2.config.js"]
+# Copy the docker-entrypoint.js file
+COPY docker-entrypoint.js .
+
+# Set the entrypoint to run the docker-entrypoint.js file
+ENTRYPOINT ["node", "docker-entrypoint.js"]
