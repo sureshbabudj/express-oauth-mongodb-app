@@ -16,13 +16,6 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Set the environment variable for the port (default: 80)
-ARG PORT=80
-ENV PORT $PORT
-
-# Expose the port that the web server will listen on
-EXPOSE $PORT
-
 # Copy the docker-entrypoint.js file
 COPY docker-entrypoint.js .
 
