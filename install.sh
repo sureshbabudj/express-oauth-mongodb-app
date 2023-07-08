@@ -10,8 +10,14 @@ curl -L --create-dirs -o etc/letsencrypt/options-ssl-nginx.conf https://raw.gith
 openssl dhparam -out etc/letsencrypt/ssl-dhparams.pem 2048
 
 # Phase 2
-crontab ./crontab
-docker-compose -f ./docker-compose.yaml --build -d up
+# crontab ./crontab
+
+# Build and run the Express app
+docker-compose -f ./docker-compose.yaml build app
+docker-compose -f ./docker-compose.yaml up -d app
+
+# Start Nginx
+docker-compose -f ./docker-compose.yaml up -d nginx
 
 
 
