@@ -20,7 +20,7 @@ docker-compose -f ./docker-compose.yaml up -d app
 docker-compose -f ./docker-compose.yaml up -d nginx
 
 #Start certbot
-ocker-compose -f ./docker-compose.yaml up -d certbot
+docker-compose -f ./docker-compose.yaml up -d certbot
 
 
 
