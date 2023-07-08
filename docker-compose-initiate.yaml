@@ -8,7 +8,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./etc/nginx/templates-initiate:/etc/nginx/templates
+      - ./nginx/templates-initiate:/etc/nginx/templates
       - ./etc/letsencrypt:/etc/letsencrypt
       - ./certbot/data:/var/www/certbot
   certbot:
