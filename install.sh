@@ -12,15 +12,8 @@ openssl dhparam -out etc/letsencrypt/ssl-dhparams.pem 2048
 # Phase 2
 # crontab ./crontab
 
-# Build and run the Express app
-docker-compose -f ./docker-compose.yaml build app
-docker-compose -f ./docker-compose.yaml up -d app
-
-# Start Nginx
-docker-compose -f ./docker-compose.yaml up -d nginx
-
-#Start certbot
-docker-compose -f ./docker-compose.yaml up -d certbot
+# Build and run all services
+docker-compose -f ./docker-compose.yaml up --build -d
 
 
 
