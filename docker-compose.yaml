@@ -6,6 +6,7 @@ services:
       - '27017:27017'
     volumes:
       - ./data:/data/db
+
   app:
     build:
       context: .
@@ -33,6 +34,7 @@ services:
       - ./nginx/templates:/etc/nginx/templates:ro
       - ./etc/letsencrypt:/etc/letsencrypt:ro
       - ./certbot/data:/var/www/certbot
+  
   certbot:
     container_name: certbot
     image: certbot/certbot:latest

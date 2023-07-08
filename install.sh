@@ -12,6 +12,9 @@ openssl dhparam -out etc/letsencrypt/ssl-dhparams.pem 2048
 # Phase 2
 # crontab ./crontab
 
+# Stop any process running on port 80
+fuser -k 80/tcp
+
 # Build and run all services
 docker-compose -f ./docker-compose.yaml up --build -d
 
