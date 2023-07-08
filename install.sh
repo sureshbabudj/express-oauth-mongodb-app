@@ -10,7 +10,7 @@ curl -L --create-dirs -o etc/letsencrypt/options-ssl-nginx.conf https://raw.gith
 openssl dhparam -out etc/letsencrypt/ssl-dhparams.pem 2048
 
 # Phase 2
-crontab ./etc/crontab
+crontab ./crontab
 docker-compose -f ./docker-compose.yaml --build -d up
 
 

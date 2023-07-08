@@ -1,0 +1,2 @@
+# m h  dom mon dow   command
+0 5  * * *  /var/www/express-oauth-mongodb-app/cron_job.sh
