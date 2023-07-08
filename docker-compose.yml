@@ -17,18 +17,32 @@ services:
     depends_on:
       - mongo
     restart: always
+
   nginx:
-    image: nginx
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf.template
-      - ./nginx-entrypoint.sh:/docker-entrypoint.d/nginx-entrypoint.sh
-    ports:
-      - ${NGINX_PORT}:80
+    container_name: nginx
+    image: nginx:latest
+    restart: unless-stopped
+    environment:
+      - DOMAIN
     depends_on:
       - app
-    environment:
-      - PORT=${PORT}
-    restart: always
-    entrypoint: /bin/bash -c 'chmod +x /docker-entrypoint.d/nginx-entrypoint.sh && /docker-entrypoint.sh nginx -g "daemon off;"'
-    
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./etc/nginx/templates:/etc/nginx/templates:ro
+      - ./etc/letsencrypt:/etc/letsencrypt:ro
+      - ./certbot/data:/var/www/certbot
+  certbot:
+    container_name: certbot
+    image: certbot/certbot:latest
+    depends_on:
+      - nginx
+    command: >-
+             certonly --reinstall --webroot --webroot-path=/var/www/certbot
+             --email ${EMAIL} --agree-tos --no-eff-email
+             -d ${DOMAIN}
+    volumes:
+      - ./etc/letsencrypt:/etc/letsencrypt
+      - ./certbot/data:/var/www/certbot
 
