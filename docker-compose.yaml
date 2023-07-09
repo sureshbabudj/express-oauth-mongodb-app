@@ -25,6 +25,7 @@ services:
     restart: unless-stopped
     environment:
       - DOMAIN
+      - PORT
     depends_on:
       - app
     ports:
