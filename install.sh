@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Get the current user's username
+username=$(whoami)
+
+# Change the ownership of the folder recursively
+folder_path=$(dirname "$(realpath "$0")")
+chown -R $username:$username $folder_path
+
 # Phase 1
 docker-compose -f ./docker-compose-initiate.yaml up -d nginx
 docker-compose -f ./docker-compose-initiate.yaml up certbot
