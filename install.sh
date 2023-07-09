@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Check if script is run with administrative privileges
-if [[ $EUID -ne 0 ]]; then
-  echo "This script must be run with administrative privileges."
-  exit 1
-fi
-
 # Get the current user's username
 username=$(whoami)
 
