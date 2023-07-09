@@ -1,11 +1,23 @@
 #!/bin/bash
 
+# Check if script is run with administrative privileges
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run with administrative privileges."
+  exit 1
+fi
+
 # Get the current user's username
 username=$(whoami)
 
 # Change the ownership of the folder recursively
 folder_path=$(dirname "$(realpath "$0")")
 chown -R $username:$username $folder_path
+
+# Change the ownership of the /etc folder
+chown -R $username:$username /etc
+
+# Grant necessary permissions to the /etc folder
+chmod -R 755 /etc
 
 # Phase 1
 docker-compose -f ./docker-compose-initiate.yaml up -d nginx
