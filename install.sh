@@ -1,12 +1,5 @@
 #!/bin/bash
-# Create a non-root user
-RUN useradd -ms /bin/bash myuser
 
-# Set the working directory for the user
-WORKDIR /app
-
-# Set the user for running subsequent commands
-USER myuser
 # Phase 1
 docker-compose -f ./docker-compose-initiate.yaml up -d nginx
 docker-compose -f ./docker-compose-initiate.yaml up certbot
