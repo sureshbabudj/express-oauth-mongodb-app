@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Change ownership recursively of all files and directories in the nginx/templates directory
-chown -R ec2-user:ec2-user ./nginx/templates
-
-# Set appropriate permissions for files and directories in the nginx/templates directory
-find ./nginx/templates -type d -exec chmod 755 {} +
-find ./nginx/templates -type f -exec chmod 644 {} +
-
-# Repeat the same for the etc/letsencrypt and certbot/data directories if necessary.
-
 # Phase 1
 docker-compose -f ./docker-compose-initiate.yaml up -d nginx
 docker-compose -f ./docker-compose-initiate.yaml up certbot
