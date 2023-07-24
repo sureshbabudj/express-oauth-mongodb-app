@@ -1,18 +1,12 @@
 #!/bin/bash
+# Create a non-root user
+RUN useradd -ms /bin/bash myuser
 
-# Get the current user's username
-username=$(whoami)
+# Set the working directory for the user
+WORKDIR /app
 
-# Change the ownership of the folder recursively
-folder_path=$(dirname "$(realpath "$0")")
-chown -R $username:$username $folder_path
-
-# Change the ownership of the /etc folder
-chown -R $username:$username /etc
-
-# Grant necessary permissions to the /etc folder
-chmod -R 755 /etc
-
+# Set the user for running subsequent commands
+USER myuser
 # Phase 1
 docker-compose -f ./docker-compose-initiate.yaml up -d nginx
 docker-compose -f ./docker-compose-initiate.yaml up certbot
